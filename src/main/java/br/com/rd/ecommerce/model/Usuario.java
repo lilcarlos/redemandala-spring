@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -14,11 +15,11 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_usuario")
-public class Usuario {
+public class Usuario implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_usuario;
+    private Integer idUsuario;
 
     @NotNull
     @Column(name = "email_usuario", length = 100)
@@ -32,11 +33,20 @@ public class Usuario {
     @Column(name = "nome_usuario", length = 80)
     private String nomeUsuario;
 
-    @NotNull
+
     @Column(name = "cpf_usuario", length = 11)
     private String cpfUsuario;
 
-    @NotNull
+
     @Column(name = "data_nascimento")
     private Date dataNascimento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_endereco")
+    private Endereco endereco;
+
+    @OneToOne
+    @JoinColumn(name = "id_cartao")
+    private Cartoes cartao;
+
 }

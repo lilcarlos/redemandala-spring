@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -13,11 +14,11 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_cartao")
-public class Cartoes {
+public class Cartoes implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_cartao;
+    private Integer idCartao;
 
     @NotNull
     @Column(name = "numero_cartao")

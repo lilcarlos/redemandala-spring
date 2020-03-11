@@ -6,17 +6,19 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_endereco")
-public class Endereco {
+public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_endereco;
+    @Column(name = "id_endereco")
+    private Integer idEndereco;
 
     @NotNull
     @Column(name = "endereco",length=100)
@@ -37,5 +39,6 @@ public class Endereco {
     @NotNull
     @Column(name = "estado_endereco",length=2)
     private String estadoEndereco;
+
 
 }

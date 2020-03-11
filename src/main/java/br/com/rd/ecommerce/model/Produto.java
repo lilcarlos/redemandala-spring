@@ -14,24 +14,23 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_itens_pedido")
-public class ItemPedido implements Serializable {
+@Table(name = "tb_produto")
+public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idItemPedido;
+    private Integer idProduto;
 
     @NotNull
-    @Column(name = "quantidade_item",length=50)
-    private Integer quantidadeItem;
+    @Column(name = "nome_produto")
+    private String nomeProduto;
 
     @NotNull
-    @Column(name = "valor_unitario")
-    private BigDecimal valorUnitario;
+    @Column(name = "descricao_produto")
+    private String descricaoProduto;
 
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "id_produto")
-    private Produto idProduto;
+    @Column(name = "valor_produto")
+    private BigDecimal valorProduto;
 
 }

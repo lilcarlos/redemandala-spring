@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -14,12 +15,17 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "tb_estoque")
 
-public class Estoque {
+public class Estoque implements Serializable {
 
+
+//    @Id
+//    @Column(name = "id_produto")
+//    private Long idProduto;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_imagem;
+    @OneToOne
+    @JoinColumn(name = "id_produto")
+    private Produto produto;
 
     @NotNull
     @Column(name = "quantidade_produto")

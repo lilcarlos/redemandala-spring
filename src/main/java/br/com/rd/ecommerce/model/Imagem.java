@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
@@ -14,18 +15,19 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_imagens")
-public class Imagem {
+public class Imagem implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_imagem;
+    @OneToOne
+    @JoinColumn(name = "id_produto")
+    private Produto idProduto;
 
     @NotNull
     @Column(name = "url_imagem")
     private Integer urlImagem;
 
     @NotNull
-    @Column(name = "valor_unitario")
-    private BigDecimal valorUnitario;
+    @Column(name = "flag_imagem")
+    private Boolean flaImagem;
 
 }

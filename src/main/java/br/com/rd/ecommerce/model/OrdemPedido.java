@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
@@ -13,7 +14,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_ordem_pedidos")
-public class OrdemPedido {
+public class OrdemPedido implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +27,21 @@ public class OrdemPedido {
     @NotNull
     @Column(name = "valor_total")
     private BigDecimal valorTotal;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario idUsuario;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "id_itemPedido")
+    private ItemPedido idItemPedido;
+
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "id_nota_fiscal")
+    private NotaFiscal idNotaFiscal;
+
 
 }
